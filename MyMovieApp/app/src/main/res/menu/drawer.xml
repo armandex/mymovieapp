@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/top"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/navItemCartelera"
+            android:checked="true"
+            android:icon="@drawable/ic_cartelera"
+            android:title="Cartelera" />
+
+        <item
+            android:id="@+id/navItemFavoritos"
+            android:icon="@drawable/ic_favorito"
+            android:title="Favoritos" />
+
+        <item
+            android:id="@+id/navItemAjustes"
+            android:icon="@drawable/ic_ajustes"
+            android:title="Ajustes" />
+    </group>
+
+    <group
+        android:id="@+id/bottom"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/navItemLogout"
+            android:icon="@drawable/ic_ajustes"
+            android:title="Logout" />
+    </group>
+</menu>

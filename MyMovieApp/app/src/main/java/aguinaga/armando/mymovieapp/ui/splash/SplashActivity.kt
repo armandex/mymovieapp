@@ -1,6 +1,6 @@
 package aguinaga.armando.mymovieapp.ui.splash
 
-import aguinaga.armando.mymovieapp.Utils.App
+import aguinaga.armando.mymovieapp.utils.App
 import aguinaga.armando.mymovieapp.databinding.ActivitySplashBinding
 import android.os.Bundle
 import android.os.Handler
@@ -19,7 +19,8 @@ class SplashActivity : AppCompatActivity(){
 
             if (true){
                 finish()
-                App.goLogin(applicationContext,null)
+                //App.goLogin(applicationContext,null)
+                App.goMain(applicationContext,null)
             }else{
                 finish()
                 App.goMain(applicationContext,null)

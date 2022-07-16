@@ -1,4 +1,4 @@
-package aguinaga.armando.mymovieapp.Utils
+package aguinaga.armando.mymovieapp.utils
 
 import aguinaga.armando.mymovieapp.ui.login.LoginActivity
 import aguinaga.armando.mymovieapp.ui.movies.MoviesActivity
