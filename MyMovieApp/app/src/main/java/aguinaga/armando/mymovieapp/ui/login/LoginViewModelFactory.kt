@@ -2,8 +2,8 @@ package aguinaga.armando.mymovieapp.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import aguinaga.armando.mymovieapp.data.datasources.local.LoginLocalDataSource
-import aguinaga.armando.mymovieapp.data.repositories.LoginRepository
+import aguinaga.armando.mymovieapp.data.sources.local.LoginLocalDataSource
+import aguinaga.armando.mymovieapp.data.sources.repositories.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

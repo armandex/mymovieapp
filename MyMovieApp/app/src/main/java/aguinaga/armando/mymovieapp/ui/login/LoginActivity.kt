@@ -15,11 +15,17 @@ import android.widget.Toast
 import aguinaga.armando.mymovieapp.databinding.ActivityLoginBinding
 
 import aguinaga.armando.mymovieapp.R
+import aguinaga.armando.mymovieapp.ui.viewmodels.PreferencesViewModel
+import aguinaga.armando.mymovieapp.utils.App
+import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
+    private val preferencesViewModel: PreferencesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,9 +65,10 @@ class LoginActivity : AppCompatActivity() {
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
             }
-            setResult(Activity.RESULT_OK)
+            //setResult(Activity.RESULT_OK)
 
             //Complete and destroy login activity once successful
+
             finish()
         })
 
@@ -101,12 +108,13 @@ class LoginActivity : AppCompatActivity() {
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
-        // TODO : initiate successful logged in experience
         Toast.makeText(
             applicationContext,
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
+        preferencesViewModel.setUserName(model.displayName)
+        App.goMain(this, null)
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

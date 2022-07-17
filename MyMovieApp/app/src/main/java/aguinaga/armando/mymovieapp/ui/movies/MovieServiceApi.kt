@@ -4,12 +4,13 @@ import aguinaga.armando.mymovieapp.data.model.responses.ResponseMovies
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MovieServiceApi {
 
-    @GET("upcoming?page={page}")
+    @GET("upcoming?")
     suspend fun getMovies(
-        @Path("page") page: Int
-    ): Response<ResponseMovies>
+        @Query("page") value: Int
+    ): Response<ResponseMovies?>
 
 }

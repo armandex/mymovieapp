@@ -27,6 +27,7 @@ import javax.net.ssl.X509TrustManager
 object NetworkModule {
 
     const val BASE = "https://api.themoviedb.org/3/movie/"
+    const val BASE_IMAGES = "https://image.tmdb.org/t/p/w500/"
     private const val BASE_MOVIES = ""
     private const val SECONDS_TO_TIME_OUT: Long = 600
 

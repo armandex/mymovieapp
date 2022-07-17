@@ -9,16 +9,6 @@
             android:checked="true"
             android:icon="@drawable/ic_cartelera"
             android:title="Cartelera" />
-
-        <item
-            android:id="@+id/navItemFavoritos"
-            android:icon="@drawable/ic_favorito"
-            android:title="Favoritos" />
-
-        <item
-            android:id="@+id/navItemAjustes"
-            android:icon="@drawable/ic_ajustes"
-            android:title="Ajustes" />
     </group>
 
     <group
