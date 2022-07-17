@@ -1,5 +1,7 @@
-package aguinaga.armando.mymovieapp.data
+package aguinaga.armando.mymovieapp.data.repositories
 
+import aguinaga.armando.mymovieapp.data.datasources.local.LoginLocalDataSource
+import aguinaga.armando.mymovieapp.data.Result
 import aguinaga.armando.mymovieapp.data.model.LoggedInUser
 
 /**
@@ -7,7 +9,7 @@ import aguinaga.armando.mymovieapp.data.model.LoggedInUser
  * maintains an in-memory cache of login status and user credentials information.
  */
 
-class LoginRepository(val dataSource: LoginDataSource) {
+class LoginRepository(val dataSource: LoginLocalDataSource) {
 
     // in-memory cache of the loggedInUser object
     var user: LoggedInUser? = null

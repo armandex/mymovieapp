@@ -3,7 +3,9 @@ package aguinaga.armando.mymovieapp.ui.movies
 import aguinaga.armando.mymovieapp.databinding.ActivityDrawerBinding
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MoviesActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityDrawerBinding

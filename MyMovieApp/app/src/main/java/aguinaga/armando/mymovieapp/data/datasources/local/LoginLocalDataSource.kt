@@ -1,12 +1,13 @@
-package aguinaga.armando.mymovieapp.data
+package aguinaga.armando.mymovieapp.data.datasources.local
 
+import aguinaga.armando.mymovieapp.data.Result
 import aguinaga.armando.mymovieapp.data.model.LoggedInUser
 import java.io.IOException
 
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
-class LoginDataSource {
+class LoginLocalDataSource {
 
     fun login(username: String, password: String): Result<LoggedInUser> {
         try {
