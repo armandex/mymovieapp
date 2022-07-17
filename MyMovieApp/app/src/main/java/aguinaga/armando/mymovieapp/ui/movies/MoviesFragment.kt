@@ -1,7 +1,9 @@
 package aguinaga.armando.mymovieapp.ui.movies
 
 import aguinaga.armando.mymovieapp.R
+import aguinaga.armando.mymovieapp.data.model.responses.ResponseMovies
 import aguinaga.armando.mymovieapp.databinding.FragmentMoviesBinding
+import aguinaga.armando.mymovieapp.utils.App
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -36,12 +38,13 @@ const val REQUEST_CODE_FAVORITOS = 10
         binding.recyclerView.adapter = peliculasAdapter
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerView.setHasFixedSize(true)
-
-//        swipeRefresh.setColorSchemeColors(Color.parseColor("#ff0000"), Color.CYAN, Color.GREEN)
         binding.swipeRefresh.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary)
 
         peliculasAdapter.setOnPeliculaClickListener { movie ->
-            Toast.makeText(requireContext(),"Clicked! - ${movie.title}", Toast.LENGTH_SHORT ).show()
+           Bundle().let {
+               it.putInt("idMovie",movie.id)
+               App.goMovieDetail(requireActivity(),it)
+            }
         }
 
         binding.swipeRefresh.setOnRefreshListener {
@@ -49,10 +52,6 @@ const val REQUEST_CODE_FAVORITOS = 10
         }
         moviesViewmodel.getMovies.observe(viewLifecycleOwner) { it ->
             if (it != null) {
-                /*it.forEach { item ->
-                    Timber.e("${item.title} - ${item.id} - ${item.release_date} - ${item.vote_average}")
-                    Timber.e(item.overview)
-                }*/
                 peliculasAdapter.setPeliculas(it)
             } else {
                 Timber.e("NULL")

@@ -28,6 +28,10 @@ class MoviesRemotoDataSource @Inject constructor(
         return null
     }
 
+    override suspend fun getMovieById(page: Int): ResponseMovies.Movie? {
+        return null
+    }
+
     override suspend fun saveMovies(lista: List<ResponseMovies.Movie>) {
 
     }

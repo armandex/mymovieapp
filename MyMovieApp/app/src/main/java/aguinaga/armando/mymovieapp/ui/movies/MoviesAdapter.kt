@@ -6,11 +6,10 @@ import aguinaga.armando.mymovieapp.di.NetworkModule
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.item_pelicula.view.*
-import timber.log.Timber
 
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
@@ -20,7 +19,7 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_pelicula, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
         return ViewHolder(view)
     }
 
@@ -47,11 +46,11 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
         fun bind(movie: ResponseMovies.Movie, onPeliculaClickListener: ((ResponseMovies.Movie) -> Unit)?) {
             val anchoPantalla = containerView.context.resources.displayMetrics.widthPixels
             val url = "${NetworkModule.BASE_IMAGES}${movie.backdrop_path.replace("/","")}"
-
+            val imgMovie = containerView.findViewById<ImageView>(R.id.imgMovie)
             Picasso.get()
                 .load(url)
                 .resize(anchoPantalla / 2, anchoPantalla / 2 * 1000 / 674)
-                .into(containerView.imgPelicula)
+                .into(imgMovie)
 
             containerView.setOnClickListener {
                 onPeliculaClickListener?.invoke(movie)

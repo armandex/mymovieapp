@@ -9,7 +9,7 @@
     android:background="?selectableItemBackground">
 
     <ImageView
-        android:id="@+id/imgPelicula"
+        android:id="@+id/imgMovie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:srcCompat="@tools:sample/avatars" />

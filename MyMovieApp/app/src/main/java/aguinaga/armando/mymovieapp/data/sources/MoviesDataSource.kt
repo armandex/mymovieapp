@@ -12,5 +12,9 @@ interface MoviesDataSource {
         page: Int
     ): List<ResponseMovies.Movie>?
 
+    suspend fun getMovieById(
+        idMovie: Int
+    ): ResponseMovies.Movie?
+
     suspend fun saveMovies(lista: List<ResponseMovies.Movie>)
 }

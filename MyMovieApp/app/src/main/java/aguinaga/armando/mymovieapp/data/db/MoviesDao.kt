@@ -17,4 +17,7 @@ interface MoviesDao {
 
     @Query("SELECT * FROM Movie")
     suspend fun getAllMovies():List<ResponseMovies.Movie>
+
+    @Query("SELECT * FROM Movie WHERE Movie.id=:idMovie")
+    suspend fun getMovieById(idMovie: Int):ResponseMovies.Movie
 }

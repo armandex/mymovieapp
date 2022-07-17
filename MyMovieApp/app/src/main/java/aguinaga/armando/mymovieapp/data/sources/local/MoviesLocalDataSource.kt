@@ -19,6 +19,10 @@ class MoviesLocalDataSource @Inject constructor(
          return appDatabase.moviesDao().getAllMovies()
     }
 
+    override suspend fun getMovieById(idMovie: Int): ResponseMovies.Movie {
+        return appDatabase.moviesDao().getMovieById(idMovie)
+    }
+
     override suspend fun saveMovies(lista: List<ResponseMovies.Movie>) {
         return appDatabase.moviesDao().insertMovies(lista)
     }

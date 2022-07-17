@@ -22,4 +22,6 @@ object Constantes  {
 
     */
     /***/
+    const val moviesFragment = "moviesFragment"
+    const val moviesDetailFragment = "moviesDetailFragment"
 }

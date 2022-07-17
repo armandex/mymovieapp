@@ -4,6 +4,7 @@ import aguinaga.armando.mymovieapp.R
 import aguinaga.armando.mymovieapp.databinding.ActivityDrawerBinding
 import aguinaga.armando.mymovieapp.ui.viewmodels.PreferencesViewModel
 import aguinaga.armando.mymovieapp.utils.App
+import aguinaga.armando.mymovieapp.utils.Constantes
 import android.content.Context
 import android.os.Bundle
 import android.view.MenuItem
@@ -37,10 +38,12 @@ class MoviesActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelect
         setContentView(binding.root)
         initialize()
         if (savedInstanceState == null) {
-            supportFragmentManager.commit {
+            drawer_title.text = "My Movie App"
+            App.goMovies(this, null)
+            /*supportFragmentManager.commit {
                 add(R.id.contenido, MoviesFragment())
                 drawer_title.text = "My Movie App"
-            }
+            }*/
         }
         Timber.e("onCreate")
 
@@ -66,10 +69,9 @@ class MoviesActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelect
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         drawer.closeDrawer(GravityCompat.START)
-        var fragmentContenido: Fragment? = null
         when (item.itemId) {
             R.id.navItemCartelera -> {
-                fragmentContenido = MoviesFragment()
+                App.goMovies(this,null)
                 drawer_title.text = "My Movie App"
             }
             R.id.navItemLogout -> {
@@ -78,13 +80,6 @@ class MoviesActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelect
                 App.goLogin(this, null)
             }
         }
-
-        fragmentContenido?.let {
-            supportFragmentManager.commit {
-                replace(R.id.contenido, it)
-            }
-        }
-
         return true
     }
     private fun cerrarSession() {

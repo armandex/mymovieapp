@@ -9,20 +9,20 @@ import javax.inject.Inject
 class MoviesRepository @Inject constructor(
     private val moviesLocalDataSource: MoviesLocalDataSource,
     private val moviesRemotoDataSource: MoviesRemotoDataSource
-): MoviesDataSource {
+) : MoviesDataSource {
 
     var forzarActualizacion = false
 
     override suspend fun getMoviesFromBackend(page: Int): ResponseMovies? {
-            return obtenerPeliculasEnCarteleraRemoto(page)
+        return obtenerPeliculasEnCarteleraRemoto(page)
     }
 
     override suspend fun getMovies(page: Int): List<ResponseMovies.Movie>? {
-        return if (forzarActualizacion){
+        return if (forzarActualizacion) {
             obtenerPeliculasEnCarteleraRemoto(page)?.results
         } else {
             val moviesLocal = moviesLocalDataSource.getMovies(page)
-            if (moviesLocal.isNullOrEmpty()){
+            if (moviesLocal.isNullOrEmpty()) {
                 obtenerPeliculasEnCarteleraRemoto(page)?.results
             } else {
                 return moviesLocal
@@ -30,11 +30,15 @@ class MoviesRepository @Inject constructor(
         }
     }
 
-    override suspend fun saveMovies(lista: List<ResponseMovies.Movie>) {
-       // moviesLocalDataSource.saveMovies(lista)
+    override suspend fun getMovieById(idMovie: Int): ResponseMovies.Movie {
+        return moviesLocalDataSource.getMovieById(idMovie)
     }
 
-    suspend fun obtenerPeliculasEnCarteleraRemoto(page: Int): ResponseMovies?{
+    override suspend fun saveMovies(lista: List<ResponseMovies.Movie>) {
+        // moviesLocalDataSource.saveMovies(lista)
+    }
+
+    suspend fun obtenerPeliculasEnCarteleraRemoto(page: Int): ResponseMovies? {
         val peliculaRemoto = moviesRemotoDataSource.getMoviesFromBackend(page)
         peliculaRemoto?.let {
             moviesLocalDataSource.saveMovies(peliculaRemoto.results)

@@ -9,6 +9,7 @@ data class ResponseMovies(
     val total_pages: Int,
     val total_results: Int,
 ) {
+
     @Entity
     data class Movie(
         @PrimaryKey(autoGenerate = false)
