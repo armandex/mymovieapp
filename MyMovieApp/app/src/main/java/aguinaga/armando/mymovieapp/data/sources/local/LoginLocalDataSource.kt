@@ -1,4 +1,4 @@
-package aguinaga.armando.mymovieapp.data.datasources.local
+package aguinaga.armando.mymovieapp.data.sources.local
 
 import aguinaga.armando.mymovieapp.data.Result
 import aguinaga.armando.mymovieapp.data.model.LoggedInUser

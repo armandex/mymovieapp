@@ -6,13 +6,15 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import dagger.Provides
+import javax.inject.Singleton
 
 @Dao
 interface MoviesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovies(ResponseMovies: List<ResponseMovies.Results.Movie>)
+    suspend fun insertMovies(ResponseMovies: List<ResponseMovies.Movie>)
 
     @Query("SELECT * FROM Movie")
-    fun getAllMovies():LiveData<List<ResponseMovies.Results.Movie>>
+    suspend fun getAllMovies():List<ResponseMovies.Movie>
 }

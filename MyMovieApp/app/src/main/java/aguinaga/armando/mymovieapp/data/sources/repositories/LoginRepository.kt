@@ -1,6 +1,6 @@
-package aguinaga.armando.mymovieapp.data.repositories
+package aguinaga.armando.mymovieapp.data.sources.repositories
 
-import aguinaga.armando.mymovieapp.data.datasources.local.LoginLocalDataSource
+import aguinaga.armando.mymovieapp.data.sources.local.LoginLocalDataSource
 import aguinaga.armando.mymovieapp.data.Result
 import aguinaga.armando.mymovieapp.data.model.LoggedInUser
 

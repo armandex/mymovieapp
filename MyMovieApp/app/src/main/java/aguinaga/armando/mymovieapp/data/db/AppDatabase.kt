@@ -4,7 +4,7 @@ import aguinaga.armando.mymovieapp.data.model.responses.ResponseMovies
 import androidx.room.Database
 import androidx.room.RoomDatabase
 
-@Database(entities = [ResponseMovies.Results.Movie::class], version = 1)
+@Database(entities = [ResponseMovies.Movie::class], version = 1)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun moviesDao(): MoviesDao
 }

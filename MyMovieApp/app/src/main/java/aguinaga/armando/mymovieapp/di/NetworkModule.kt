@@ -1,6 +1,7 @@
 package aguinaga.armando.mymovieapp.di
 
 import aguinaga.armando.mymovieapp.ui.movies.MovieServiceApi
+import aguinaga.armando.mymovieapp.utils.Constantes
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,7 +26,7 @@ import javax.net.ssl.X509TrustManager
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val BASE = "https://api.themoviedb.org/3/movie/"
+    const val BASE = "https://api.themoviedb.org/3/movie/"
     private const val BASE_MOVIES = ""
     private const val SECONDS_TO_TIME_OUT: Long = 600
 
@@ -44,6 +45,12 @@ object NetworkModule {
             .readTimeout(SECONDS_TO_TIME_OUT, TimeUnit.SECONDS)
             .writeTimeout(SECONDS_TO_TIME_OUT, TimeUnit.SECONDS)
             .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor { chain ->
+                val newRequest = chain.request().newBuilder()
+                    .addHeader("Authorization","Bearer ${Constantes.myBearerToken}")
+                    .build()
+                chain.proceed(newRequest)
+            }
             .build()
     }
     @Singleton
@@ -93,7 +100,7 @@ object NetworkModule {
     }
     @Singleton
     @Provides
-    fun getRetrofitT33( genericOkHttpClient: OkHttpClient): MovieServiceApi {
+    fun getRetrofit( genericOkHttpClient: OkHttpClient): MovieServiceApi {
         return Retrofit.Builder()
             .baseUrl(BASE)
             .client(genericOkHttpClient)
