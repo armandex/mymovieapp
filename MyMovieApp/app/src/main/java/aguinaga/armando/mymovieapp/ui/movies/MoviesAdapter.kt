@@ -45,11 +45,11 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
         fun bind(movie: ResponseMovies.Movie, onPeliculaClickListener: ((ResponseMovies.Movie) -> Unit)?) {
             val anchoPantalla = containerView.context.resources.displayMetrics.widthPixels
-            val url = "${NetworkModule.BASE_IMAGES}${movie.backdrop_path.replace("/","")}"
+            val url = "${NetworkModule.BASE_IMAGES}${movie.poster_path.replace("/","")}"
             val imgMovie = containerView.findViewById<ImageView>(R.id.imgMovie)
             Picasso.get()
                 .load(url)
-                .resize(anchoPantalla / 2, anchoPantalla / 2 * 1000 / 674)
+                .resize((anchoPantalla / 2) , (anchoPantalla / 2 * 1000 / 674) )
                 .into(imgMovie)
 
             containerView.setOnClickListener {
