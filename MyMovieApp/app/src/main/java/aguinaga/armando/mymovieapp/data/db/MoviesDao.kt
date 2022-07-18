@@ -15,6 +15,9 @@ interface MoviesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMovies(ResponseMovies: List<ResponseMovies.Movie>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertMovie(Movie: ResponseMovies.Movie)
+
     @Query("SELECT * FROM Movie")
     suspend fun getAllMovies():List<ResponseMovies.Movie>
 

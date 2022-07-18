@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    app:cardElevation="20dp"
-    app:cardCornerRadius="20dp">
-
-    <ImageView
-        android:id="@+id/imgMovie"
+    >
+    <data>
+        <variable
+            name="userItemUiState"
+            type="aguinaga.armando.mymovieapp.ui.movies.UserItemUiState" />
+    </data>
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_margin="10dp"
+        app:cardElevation="20dp"
+        app:cardCornerRadius="20dp">
 
-</com.google.android.material.card.MaterialCardView>
+        <ImageView
+            android:id="@+id/imgMovie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+
+            imageUrl="@{userItemUiState.imageUrl}"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

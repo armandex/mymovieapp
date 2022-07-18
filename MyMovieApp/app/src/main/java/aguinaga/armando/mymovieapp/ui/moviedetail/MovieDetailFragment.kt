@@ -56,7 +56,13 @@ class MovieDetailFragment : Fragment() {
     private fun observers() {
         movieDetailViewmodel.getMovie.observe(viewLifecycleOwner) {
             Timber.e("title: ${it.title}")
-            val url = "${NetworkModule.BASE_IMAGES}${it.backdrop_path.replace("/", "")}"
+            var url = ""
+            if (it.backdrop_path.isNullOrEmpty() && !it.poster_path.isNullOrEmpty()){
+               url = "${NetworkModule.BASE_IMAGES}${it.poster_path.replace("/", "")}"
+            } else if(!it.backdrop_path.isNullOrEmpty()) {
+                url = "${NetworkModule.BASE_IMAGES}${it.backdrop_path.replace("/", "")}"
+            }
+            Timber.e("url $url")
             Picasso.get()
                 .load(url)
                 .into(binding.imgMovieDetail)

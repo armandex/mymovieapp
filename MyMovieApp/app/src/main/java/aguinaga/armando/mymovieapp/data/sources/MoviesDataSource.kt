@@ -17,4 +17,7 @@ interface MoviesDataSource {
     ): ResponseMovies.Movie?
 
     suspend fun saveMovies(lista: List<ResponseMovies.Movie>)
+
+    suspend fun saveMovie(movie: ResponseMovies.Movie)
+
 }

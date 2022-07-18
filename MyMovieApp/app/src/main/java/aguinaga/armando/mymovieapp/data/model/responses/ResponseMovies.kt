@@ -15,12 +15,12 @@ data class ResponseMovies(
         @PrimaryKey(autoGenerate = false)
         val id: Int,
         val adult: Boolean,
-        val backdrop_path: String,
-        val poster_path: String,
-        val title: String,
+        val backdrop_path: String? = null,
+        val poster_path: String? = null,
+        val title: String = "untitle",
         val vote_average: Float,
-        val release_date: String,
-        val overview: String,
+        val release_date: String? = null,
+        val overview: String? = null,
 
         )
 

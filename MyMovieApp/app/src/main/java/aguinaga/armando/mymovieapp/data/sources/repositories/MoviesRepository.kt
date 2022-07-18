@@ -35,7 +35,11 @@ class MoviesRepository @Inject constructor(
     }
 
     override suspend fun saveMovies(lista: List<ResponseMovies.Movie>) {
-        // moviesLocalDataSource.saveMovies(lista)
+        return moviesLocalDataSource.saveMovies(lista)
+    }
+
+    override suspend fun saveMovie(movie: ResponseMovies.Movie) {
+        return moviesLocalDataSource.saveMovie(movie)
     }
 
     suspend fun obtenerPeliculasEnCarteleraRemoto(page: Int): ResponseMovies? {

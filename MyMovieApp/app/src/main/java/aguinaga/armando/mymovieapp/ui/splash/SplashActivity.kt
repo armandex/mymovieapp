@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SplashActivity : AppCompatActivity(){
+class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
     private val preferencesViewModel: PreferencesViewModel by viewModels()
@@ -21,13 +21,14 @@ class SplashActivity : AppCompatActivity(){
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Handler(Looper.getMainLooper()).postDelayed({
-
-            if (preferencesViewModel.getUserName() == ""){
-                App.goLogin(applicationContext,null)
-            }else{
+            val ancho = this.resources.displayMetrics.widthPixels
+            preferencesViewModel.setAnchoDispositivo(ancho)
+            if (preferencesViewModel.getUserName() == "") {
+                App.goLogin(applicationContext, null)
+            } else {
                 finish()
-                App.goMain(applicationContext,null)
+                App.goMain(applicationContext, null)
             }
-        },2500)
+        }, 2500)
     }
 }

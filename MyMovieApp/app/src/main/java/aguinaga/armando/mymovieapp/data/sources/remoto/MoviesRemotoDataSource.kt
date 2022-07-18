@@ -35,4 +35,8 @@ class MoviesRemotoDataSource @Inject constructor(
     override suspend fun saveMovies(lista: List<ResponseMovies.Movie>) {
 
     }
+
+    override suspend fun saveMovie(movie: ResponseMovies.Movie) {
+
+    }
 }

@@ -46,6 +46,7 @@ class MoviesActivity: AppCompatActivity(), DrawerLocker,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDrawerBinding.inflate(layoutInflater)
+        anchoDispositivo = preferencesViewModel.getAnchoDispositivo()
         setContentView(binding.root)
         setToolbarToMainActivity()
         initialize()
@@ -150,6 +151,7 @@ class MoviesActivity: AppCompatActivity(), DrawerLocker,
     }
     companion object {
         var isInternetEnabled = false
+        var anchoDispositivo = 0
     }
 }
 internal interface DrawerLocker {
