@@ -44,9 +44,9 @@ object App {
             if (bundle != null)
                 fragment.arguments = bundle
             if (tag == Constantes.moviesFragment){
-                fragmentTransaction.add(R.id.contenido, fragment)
+                fragmentTransaction.add(R.id.nav_host_fragment_content_main, fragment)
             } else{
-                fragmentTransaction.replace(R.id.contenido, fragment)
+                fragmentTransaction.replace(R.id.nav_host_fragment_content_main, fragment)
             }
             fragmentTransaction.commit()
         }

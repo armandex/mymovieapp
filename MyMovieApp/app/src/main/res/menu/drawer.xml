@@ -5,7 +5,7 @@
         android:id="@+id/top"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/navItemCartelera"
+            android:id="@+id/navMovies"
             android:checked="true"
             android:icon="@drawable/ic_cartelera"
             android:title="Cartelera" />

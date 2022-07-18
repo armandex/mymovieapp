@@ -4,6 +4,7 @@ import aguinaga.armando.mymovieapp.R
 import aguinaga.armando.mymovieapp.databinding.FragmentMovieDetailBinding
 import aguinaga.armando.mymovieapp.di.NetworkModule
 import aguinaga.armando.mymovieapp.ui.movies.MoviesActivity
+import aguinaga.armando.mymovieapp.ui.movies.MoviesFragmentDirections
 import aguinaga.armando.mymovieapp.utils.DialogUtils
 import android.os.Bundle
 import android.os.Handler
@@ -13,22 +14,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import timber.log.Timber
 
 class MovieDetailFragment : Fragment() {
 
-    private lateinit var binding: FragmentMovieDetailBinding
+    private var _binding: FragmentMovieDetailBinding? = null
+    private val binding get() = _binding!!
     private val movieDetailViewmodel: MovieDetailViewmodel by activityViewModels()
+    //val args: MoviesFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMovieDetailBinding.inflate(layoutInflater)
+        _binding = FragmentMovieDetailBinding.inflate(layoutInflater)
         binding.viewModel = movieDetailViewmodel
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
@@ -39,29 +44,22 @@ class MovieDetailFragment : Fragment() {
 
         initialize()
         observers()
+
+        (activity as MoviesActivity).showArrow(true)
     }
 
     private fun initialize() {
-        Bundle().let {
-            val idMovie = arguments?.getInt("idMovie")!!
-            movieDetailViewmodel.obtenerMovie(idMovie)
-        }
-        //if ()
-        //(activity as MoviesActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        //(activity as MoviesActivity).supportActionBar!!.setDisplayShowHomeEnabled(true)
-
-
+        val idMovie = arguments?.getInt("idMovie")!!
+        movieDetailViewmodel.obtenerMovie(idMovie)
     }
 
     private fun observers() {
         movieDetailViewmodel.getMovie.observe(viewLifecycleOwner) {
+            Timber.e("title: ${it.title}")
             val url = "${NetworkModule.BASE_IMAGES}${it.backdrop_path.replace("/", "")}"
             Picasso.get()
                 .load(url)
-                //.fit()
-                //.centerCrop()
                 .into(binding.imgMovieDetail)
-            //drawer_title.text = "${it.title}"
 
         }
         movieDetailViewmodel.mostrarProgress.observe(viewLifecycleOwner) {
@@ -72,4 +70,8 @@ class MovieDetailFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

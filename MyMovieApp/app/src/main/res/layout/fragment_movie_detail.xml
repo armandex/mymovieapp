@@ -18,34 +18,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.movies.MoviesActivity">
-        <TextView
-            android:id="@+id/txtTitulo"
-            style="@style/TextView.Titulo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="16dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="@{viewModel.getMovie.title}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="Avengers: End Game" />
+
         <RelativeLayout
             android:id="@+id/relativeImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
+            app:layout_constraintTop_toTopOf="parent"
             >
 
             <ImageView
                 android:id="@+id/imgMovieDetail"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="250dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -60,6 +45,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/relativeImage" />
+
+        <TextView
+            android:id="@+id/txtTitulo"
+            style="@style/TextView.Titulo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{viewModel.getMovie.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divisor"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Avengers: End Game" />
         <TextView
             android:id="@+id/txtDateRelease"
             style="@style/TextView.Detalle"
@@ -71,7 +73,7 @@
             android:ellipsize="end"
             android:text="@{`Fecha de lanzamiento: `+viewModel.getMovie.release_date}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/divisor"
+            app:layout_constraintTop_toBottomOf="@id/txtTitulo"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="00/00/0000" />
         <TextView
@@ -84,7 +86,6 @@
             android:layout_marginTop="16dp"
             android:ellipsize="end"
             android:text="@{`Valoración promedio: `+String.valueOf(viewModel.getMovie.vote_average)}"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtDateRelease"
             tools:text="0000" />
