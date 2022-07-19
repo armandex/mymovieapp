@@ -1,5 +1,6 @@
 package aguinaga.armando.mymovieapp.utils
 
+import aguinaga.armando.mymovieapp.R
 import aguinaga.armando.mymovieapp.di.NetworkModule
 import aguinaga.armando.mymovieapp.ui.movies.MoviesActivity
 import android.widget.ImageView
@@ -9,13 +10,18 @@ import timber.log.Timber
 
 
 @BindingAdapter("imageUrl")
-fun ImageView.loadImage(url: String?) {
-    if (url.isNullOrEmpty()) return
+fun ImageView.loadImage(poster: String?) {
+    if (poster.isNullOrEmpty()) return
     val anchoPantalla = MoviesActivity.anchoDispositivo
-    val url2 = "${NetworkModule.BASE_IMAGES}${url.replace("/","")}"
-    Timber.e("url2 $url2")
-    Picasso.get()
-        .load(url2)
-        .resize((anchoPantalla / 2) , (anchoPantalla / 2 * 1000 / 674) )
-        .into(this)
+    val post = "${NetworkModule.BASE_IMAGES}${poster.replace("/", "")}"
+    if (!post.isNullOrEmpty())
+        Picasso.get()
+            .load(post)
+            .resize((anchoPantalla / 2), (anchoPantalla / 2 * 1000 / 674))
+            .into(this)
+    else
+        Picasso.get()
+            .load(R.drawable.movie2)
+            .resize((anchoPantalla / 2), (anchoPantalla / 2 * 1000 / 674))
+            .into(this)
 }

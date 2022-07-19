@@ -30,8 +30,8 @@ class UserRepositoryImpl @Inject constructor(
             ),
             pagingSourceFactory = { UserPagingDataSource(userService,moviesRepository) }
         ).flow
-        /*flow.let {
-            CoroutineScope(Dispatchers.Main).launch {
+        /*.let {
+            CoroutineScope(Dispatchers.IO).launch {
                 it.collect{ movie ->
                     movie.map {
                         Timber.e("${it.title}")
@@ -44,6 +44,6 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     companion object {
-        const val NETWORK_PAGE_SIZE = 20
+        const val NETWORK_PAGE_SIZE = 5
     }
 }

@@ -56,17 +56,21 @@ class MovieDetailFragment : Fragment() {
     private fun observers() {
         movieDetailViewmodel.getMovie.observe(viewLifecycleOwner) {
             Timber.e("title: ${it.title}")
-            var url = ""
-            if (it.backdrop_path.isNullOrEmpty() && !it.poster_path.isNullOrEmpty()){
-               url = "${NetworkModule.BASE_IMAGES}${it.poster_path.replace("/", "")}"
-            } else if(!it.backdrop_path.isNullOrEmpty()) {
-                url = "${NetworkModule.BASE_IMAGES}${it.backdrop_path.replace("/", "")}"
+            if (!it.backdrop_path.isNullOrEmpty()) {
+                val url = "${NetworkModule.BASE_IMAGES}${it.backdrop_path.replace("/", "")}"
+                Picasso.get()
+                    .load(url)
+                    .into(binding.imgMovieDetail)
+            } else if (!it.poster_path.isNullOrEmpty()) {
+                val url = "${NetworkModule.BASE_IMAGES}${it.poster_path.replace("/", "")}"
+                Picasso.get()
+                    .load(url)
+                    .into(binding.imgMovieDetail)
+            } else {
+                Picasso.get()
+                    .load(R.drawable.movie1)
+                    .into(binding.imgMovieDetail)
             }
-            Timber.e("url $url")
-            Picasso.get()
-                .load(url)
-                .into(binding.imgMovieDetail)
-
         }
         movieDetailViewmodel.mostrarProgress.observe(viewLifecycleOwner) {
             if (it)
