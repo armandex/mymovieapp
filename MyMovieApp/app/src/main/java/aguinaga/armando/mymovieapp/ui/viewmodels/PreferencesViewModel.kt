@@ -34,7 +34,6 @@ class PreferencesViewModel @Inject constructor(
     fun getAltoDispositivo(): Float {
         return misprefsconfiguracion.getFloat("altoDispositivo", 0f)!!
     }
-    
 }
 
 
