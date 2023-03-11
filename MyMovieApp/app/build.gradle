@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: "androidx.navigation.safeargs"
 // Allow references to generated code
+
 kapt {
-    correctErrorTypes true
     javacOptions {
         // These options are normally set automatically via the Hilt Gradle plugin, but we
         // set them manually to workaround a bug in the Kotlin 1.5.20
@@ -15,12 +15,12 @@ kapt {
     }
 }
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "aguinaga.armando.mymovieapp"
-        minSdk 23
-        targetSdk 32
+        minSdk 21
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -42,24 +42,60 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '11'
+        jvmTarget = '1.8'
     }
 
     buildFeatures {
         viewBinding true
         dataBinding true
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.3.1"
     }
 }
 
-dependencies {
 
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'com.google.android.material:material:1.6.1'
+dependencies {
+    def composeBom = platform('androidx.compose:compose-bom:2023.01.00')
+    implementation composeBom
+    androidTestImplementation composeBom
+
+    implementation 'androidx.core:core-ktx:1.7.10'
+    implementation "androidx.compose.runtime:runtime"
+    implementation "androidx.compose.ui:ui"
+    //implementation "androidx.compose.foundation:foundation"
+    //implementation "androidx.compose.foundation:foundation-layout"
+    implementation "androidx.compose.material:material"
+    implementation "androidx.compose.material:material-icons-extended"
+    implementation "androidx.compose.ui:ui-tooling-preview"
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation 'androidx.activity:activity-compose:1.6.1'
+    def nav_version = "2.5.3"
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
+    implementation "androidx.navigation:navigation-compose:2.5.3"
+    implementation "com.google.accompanist:accompanist-themeadapter-material:0.28.0"
+    // Choose one of the following:
+    // Material Design 3
+    implementation 'androidx.compose.material3:material3'
+
+    // Android Studio Preview support
+    implementation 'androidx.compose.ui:ui-tooling-preview'
+    implementation "androidx.compose.runtime:runtime-livedata"
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation 'androidx.activity:activity-compose:1.6.1'
+    // Optional - Integration with ViewModels
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1'
+    // Optional - Integration with LiveData
+    implementation 'androidx.compose.runtime:runtime-livedata'
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1"
     implementation "androidx.fragment:fragment-ktx:1.5.0"
@@ -82,17 +118,22 @@ dependencies {
     def lifecycleExten = "2.2.0"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleExten"
     //dagger hilt
-    implementation "com.google.dagger:hilt-android:$hilt_version"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    implementation "com.google.dagger:hilt-android:2.43.2"
+    kapt "com.google.dagger:hilt-android-compiler:2.43.2"
+    //implementation "com.google.dagger:hilt-android:2.34-beta"
+    //kapt "com.google.dagger:hilt-android-compiler:2.34-beta"
+    //implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+    //kapt "androidx.hilt:hilt-compiler:1.0.0"
+    implementation 'androidx.hilt:hilt-navigation-compose:1.0.0-alpha03'
     //Paging
     implementation "androidx.paging:paging-runtime-ktx:3.1.1"
     //ROOM
-    implementation "androidx.room:room-runtime:2.4.2"
-    implementation 'androidx.room:room-ktx:2.4.2'
-    kapt "androidx.room:room-compiler:2.4.2"
+    implementation "androidx.room:room-runtime:2.5.0"
+    implementation 'androidx.room:room-ktx:2.5.0'
+    kapt "androidx.room:room-compiler:2.5.0"
     //NAVIGATIOn
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     //OTHERS
     implementation 'com.github.GrenderG:Toasty:1.5.0'//Toast
     implementation 'com.jakewharton.timber:timber:4.7.1'//Logger
