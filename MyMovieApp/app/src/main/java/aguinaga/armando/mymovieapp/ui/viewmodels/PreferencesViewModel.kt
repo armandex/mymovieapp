@@ -16,20 +16,15 @@ class PreferencesViewModel @Inject constructor(
     private val Misprefsseguridad: SharedPreferences
     ) : ViewModel() {
 
-    fun setUserName(value: String) {
+    var userName: String
+    get() = misprefsconfiguracion.getString(Constantes.username, "")!!
+    set (value: String) {
         misprefsconfiguracion.edit { putString(Constantes.username, value) }
     }
-    fun getUserName(): String {
-        return misprefsconfiguracion.getString(Constantes.username, "")!!
-    }
-    fun setAnchoDispositivo(value: Int) {
+   var widthDevice : Int
+   get() = misprefsconfiguracion.getInt("anchoDispositivo", 0)
+    set(value) {
         misprefsconfiguracion.edit { putInt("anchoDispositivo", value) }
-    }
-    fun getAnchoDispositivo(): Int {
-        return misprefsconfiguracion.getInt("anchoDispositivo", 0)
-    }
-    fun setAltoDispositivo(value: Float) {
-        misprefsconfiguracion.edit { putFloat("altoDispositivo", value) }
     }
     fun getAltoDispositivo(): Float {
         return misprefsconfiguracion.getFloat("altoDispositivo", 0f)!!

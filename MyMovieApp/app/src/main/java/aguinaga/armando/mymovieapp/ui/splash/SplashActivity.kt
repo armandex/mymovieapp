@@ -22,8 +22,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
         Handler(Looper.getMainLooper()).postDelayed({
             val ancho = this.resources.displayMetrics.widthPixels
-            preferencesViewModel.setAnchoDispositivo(ancho)
-            if (preferencesViewModel.getUserName() == "") {
+            preferencesViewModel.widthDevice = ancho
+            if (preferencesViewModel.userName == "") {
                 App.goLogin(applicationContext, null)
             } else {
                 finish()

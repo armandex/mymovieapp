@@ -13,8 +13,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
-import kotlinx.android.extensions.LayoutContainer
 import javax.inject.Inject
 
 class MoviesAdapter @Inject constructor():

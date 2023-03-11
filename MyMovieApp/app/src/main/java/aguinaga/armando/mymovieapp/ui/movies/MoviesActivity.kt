@@ -26,7 +26,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.*
 import com.google.android.material.navigation.NavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.app_bar_main.view.*
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -46,7 +45,7 @@ class MoviesActivity: AppCompatActivity(), DrawerLocker,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDrawerBinding.inflate(layoutInflater)
-        anchoDispositivo = preferencesViewModel.getAnchoDispositivo()
+        anchoDispositivo = preferencesViewModel.widthDevice
         setContentView(binding.root)
         setToolbarToMainActivity()
         initialize()
@@ -82,7 +81,7 @@ class MoviesActivity: AppCompatActivity(), DrawerLocker,
         drawerHeaderBinding = DrawerHeaderBinding.bind(headerBinding)
         txtName = drawerHeaderBinding.txtName
         imageDrawer = drawerHeaderBinding.imageHeader
-        txtName.text = preferencesViewModel.getUserName()
+        txtName.text = preferencesViewModel.userName
 
         NavigationUI.setupWithNavController(navView, navController)
         NavigationUI.setupActionBarWithNavController(this, navController, drawer)
@@ -102,7 +101,7 @@ class MoviesActivity: AppCompatActivity(), DrawerLocker,
         return true
     }
     private fun cerrarSession() {
-        preferencesViewModel.setUserName("")
+        preferencesViewModel.userName = ""
     }
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
