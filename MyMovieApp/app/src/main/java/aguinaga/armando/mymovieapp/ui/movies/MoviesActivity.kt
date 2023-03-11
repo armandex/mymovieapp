@@ -101,7 +101,7 @@ class MoviesActivity: AppCompatActivity(), DrawerLocker,
         return true
     }
     private fun cerrarSession() {
-        preferencesViewModel.setUserName("")
+        preferencesViewModel.userName = ""
     }
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)

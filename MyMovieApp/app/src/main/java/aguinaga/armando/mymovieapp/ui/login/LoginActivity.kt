@@ -113,7 +113,7 @@ class LoginActivity : AppCompatActivity() {
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
-        preferencesViewModel.setUserName(model.displayName)
+        preferencesViewModel.userName = model.displayName
         App.goMain(this, null)
     }
 
